@@ -27,36 +27,48 @@
 <body>
     
 
-    <table class="table">
+    
+    <table class="table col col-12 bg-warning w-75 mx-auto mt-5">
         <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
+            <tr>
+                <th scope="col" colspan="2" class="bg-warning text-center">Internet Payment</th>                
+            </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+            <tr class="d-flex justify-content-between">
+                <td class="col col-6 text-center">
+                    <label for="" class="">Start at <span id="start-time">0:00</span>
+                    </label>
+                </td>  
+                <td class="col col-6 text-center">
+                    <label for="" class="">Stop at <span id="stop-time">0:00</span>
+                    </label>
+                </td>  
+            </tr>
+            <tr class="d-flex justify-content-between">
+                <td class="col col-6 text-center">
+                    <label for="" class=""><span id="minutes-passed">0</span> Minute(s)
+                    </label>
+                </td>  
+                <td class="col col-6 text-center">
+                    <label for="" class=""><span id="amount-owed">0</span> Riel(s)
+                    </label>
+                </td>          
+            </tr>
+            <tr>
+                <td class="col col-12 text-center">
+                    <button class="bg-success w-25" id="action-btn">Start</button>
+                </td>         
+            </tr>
+            
         </tbody>
-      </table>
+        <tfoot>
+            <tr>
+                <th scope="col" colspan="2" class="bg-warning text-center">#</th>                
+            </tr>
+        </tfoot>
+    </table>
+
 
 
 
