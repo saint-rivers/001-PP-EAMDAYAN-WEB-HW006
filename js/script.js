@@ -1,8 +1,3 @@
-// let startTime = document.getElementById('start-time')
-// let stopTime = document.getElementById('stop-time')
-// let minutesPassed = document.getElementById('minutes-passed')
-// let amountOwed = document.getElementById('amount-time')
-
 // ===================================================
 // ====1. Testing Data =========================
 
@@ -10,7 +5,7 @@
 let startTimeLabel = document.getElementById('start-time')
 let stopTimeLabel = document.getElementById('stop-time')
 let minutesPassedLabel = document.getElementById('minutes-passed')
-let amountOwedLabel = document.getElementById('amount-time')
+let amountOwedLabel = document.getElementById('amount-owed')
 
 
 // ===================================================
@@ -18,7 +13,7 @@ let amountOwedLabel = document.getElementById('amount-time')
 let liveTime = setInterval(()=>{
 
     document.getElementById('action-btn')
-        .onclick = () => start()
+        .onclick = start()
     
     
 },1000)
@@ -37,28 +32,34 @@ let start = function(){
     let startTime = new Date("2000-01-01 1:00:00")
     let stopTime = new Date("2000-01-01 3:00:00")
 
-    
+    internetUsage = createInternetUsage(startTime, stopTime)
+    console.log(internetUsage.amountOwed);
+    displayAllDataToUser(internetUsage)
 }
 
-function createInternetUsage(){
-    let startTime = new Date("2000-01-01 1:00:00")
-    let stopTime = new Date("2000-01-01 3:00:00")
-    
-    let total = stopTime - startTime
-    let totalMinutes = Math.floor(totalTime / 6000)
+function createInternetUsage(start, stop){
+
+    // let printableTime = start.toLocaleTimeString().split(":")
+
+    let total = stop.getTime() - start.getTime()
+    let totalMinutes = Math.floor(total / 6000)
 
     return {
-        startTime: startTime,
-        stopTime: stopTime,
+        startTime: start.getTime(),
+        stopTime: stop.getTime(),
         totalTime: total,
         amountOwed: calculateAmountOwed(totalMinutes)
     }    
 }
 
 function calculateAmountOwed(total){
-    if (total > 0 && total <= 15) return 500;
-    if (total > 16 && total <= 30) return 1000;
-    if (total > 31 && total <= 60) return 1500;
+    // if (total > 0 && total <= 15) return 500;
+    // if (total > 16 && total <= 30) return 1000;
+    // if (total > 31 && total <= 60) return 1500;
+    total = 13
+    console.log(total);
+
+    return (total * total/15 * 500)
 }
 
 
