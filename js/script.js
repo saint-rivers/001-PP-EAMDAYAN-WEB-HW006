@@ -7,14 +7,17 @@ let stopTimeLabel = document.getElementById('stop-time')
 let minutesPassedLabel = document.getElementById('minutes-passed')
 let amountOwedLabel = document.getElementById('amount-owed')
 
+const minutes = 1000 * 60;
+const hours = minutes * 60;
+const days = hours * 24;
+const years = days * 365;
 
 // ===================================================
 // ====2. MAIN =========================
 let liveTime = setInterval(()=>{
 
     document.getElementById('action-btn')
-        .onclick = start()
-    
+        .onclick = start()    
     
 },1000)
 
@@ -29,12 +32,13 @@ let liveTime = setInterval(()=>{
 // ==== 4. BUTTON FUNCTIONS =========================
 
 let start = function(){
-    let startTime = new Date("2000-01-01 1:00:00")
-    let stopTime = new Date("2000-01-01 3:00:00")
+    let startTime = new Date("2000-01-01 3:00:00")
+    let stopTime = new Date("2000-01-02 7:36:00")
 
-    internetUsage = createInternetUsage(startTime, stopTime)
-    console.log(internetUsage.amountOwed);
+    internetUsage = createInternetUsage(startTime, stopTime)    
     displayAllDataToUser(internetUsage)
+
+    console.log("\n");
 }
 
 function createInternetUsage(start, stop){
@@ -42,7 +46,10 @@ function createInternetUsage(start, stop){
     // let printableTime = start.toLocaleTimeString().split(":")
 
     let total = stop.getTime() - start.getTime()
-    let totalMinutes = Math.floor(total / 6000)
+    let totalMinutes = Math.floor(total / 60_000)
+
+    console.log("start = " + start.getTime());
+    console.log("stop = " + stop.getTime());
 
     return {
         startTime: start.getTime(),
@@ -53,16 +60,20 @@ function createInternetUsage(start, stop){
 }
 
 function calculateAmountOwed(total){
-    // if (total > 0 && total <= 15) return 500;
-    // if (total > 16 && total <= 30) return 1000;
-    // if (total > 31 && total <= 60) return 1500;
-    total = 13
-    console.log(total);
-
-    return (total * total/15 * 500)
+    if (total <= 0) return 0
+        
+    let hours = Math.floor(total/60)
+    let remainMinutes = total - (60*hours)  
+            
+    totalAmount = (remainMinutes >= 30) ? 1500 : (remainMinutes > 15) ? 1000: 500    
+    totalAmount += hours * 1500
+    
+    console.log("remaining=" + remainMinutes);
+    console.log("totalAmount=" + totalAmount);
+    console.log("Hours = " + hours);
+    console.log("TotalMinutes = " + total);
+    return totalAmount
 }
-
-
 
 
 // ===================================================
